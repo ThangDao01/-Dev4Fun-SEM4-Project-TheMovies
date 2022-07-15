@@ -2,7 +2,6 @@ package com.example.jwttoken.controller;
 
 import com.example.jwttoken.dto.UserDto;
 import com.example.jwttoken.entity.MovieEntity;
-import com.example.jwttoken.service.MovieService;
 import com.example.jwttoken.service.UserService;
 import com.example.jwttoken.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,6 @@ public class ApiController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    MovieService movieService;
 
     @Autowired
     JwtTokenUtil jwtTokenUtil;
@@ -51,8 +48,4 @@ public class ApiController {
         return ResponseEntity.ok(username);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody MovieEntity movie){
-        return ResponseEntity.ok(movieService.save(movie));
-    }
 }
