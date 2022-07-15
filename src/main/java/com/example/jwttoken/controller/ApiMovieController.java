@@ -18,7 +18,7 @@ public class ApiMovieController {
     @Autowired
     MovieService movieService;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, path = "/all")
     public ResponseEntity<List<MovieEntity>> getAll(){
         return ResponseEntity.ok(movieService.findByAll());
     }

@@ -24,13 +24,6 @@ public class CategoryEntity {
     @Basic
     @Column(name = "name")
     private String name;
-    @Basic
-    @Column(name = "createDate")
-    private Date createDate;
-    @Basic
-    @Column(name = "updateDate")
-    private Date updateDate;
-
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore

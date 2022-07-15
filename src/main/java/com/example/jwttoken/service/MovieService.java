@@ -33,17 +33,4 @@ public class MovieService {
         return movieRepo.findByName(name);
     }
 
-//    @Override
-//    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-//        UserEntity user = movieService.findByAll();
-//        if (user == null){
-//            throw new UsernameNotFoundException("username not fount");
-//        }
-//
-//        SimpleGrantedAuthority grand = new SimpleGrantedAuthority(user.getRole().getName());
-//        Set<SimpleGrantedAuthority> simpleGrantedAuthorities = new HashSet<>();
-//        simpleGrantedAuthorities.add(grand);
-//        User user1 = new User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
-//        return user1;
-//    }
 }

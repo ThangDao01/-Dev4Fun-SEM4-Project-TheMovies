@@ -26,7 +26,7 @@ public class DirectorEntity {
     private String name;
     @Basic
     @Column(name = "avatar")
-    private int avatar;
+    private String avatar;
 
 
     @OneToMany(mappedBy = "director")
