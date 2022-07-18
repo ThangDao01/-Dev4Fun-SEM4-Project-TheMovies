@@ -1,19 +1,12 @@
 package com.example.jwttoken.service;
 
 import com.example.jwttoken.entity.MovieEntity;
-import com.example.jwttoken.entity.UserEntity;
 import com.example.jwttoken.repository.MovieRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -25,6 +18,10 @@ public class MovieService {
         return movieRepo.findAll();
     }
 
+    public Optional<MovieEntity> findById(int id){
+        return movieRepo.findById(id);
+    }
+
     public MovieEntity save(MovieEntity movie){
         return movieRepo.save(movie);
     }
@@ -33,4 +30,8 @@ public class MovieService {
         return movieRepo.findByName(name);
     }
 
+
+    public void delete(int id){
+        movieRepo.deleteById(id);
+    }
 }
