@@ -1,13 +1,11 @@
 package com.example.jwttoken.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,8 +13,10 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
+@Builder
 @Table(name = "categories", schema = "security", catalog = "")
-public class CategoryEntity {
+public class CategoryEntity extends BaseEntity {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -27,4 +27,6 @@ public class CategoryEntity {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<MovieEntity> movies;
+
 }
+

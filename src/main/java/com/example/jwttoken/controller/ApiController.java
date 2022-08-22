@@ -42,6 +42,7 @@ public class ApiController {
         return ResponseEntity.ok(token);
     }
 
+
     @GetMapping("/home")
     public ResponseEntity<?> home(){
         String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();

@@ -5,9 +5,12 @@ import com.example.jwttoken.entity.CategoryEntity;
 import com.example.jwttoken.entity.DirectorEntity;
 import com.example.jwttoken.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,14 +21,14 @@ public class ApiDirectorController {
     @Autowired
     DirectorService directorService;
 
-    @RequestMapping(method = RequestMethod.GET, path = {"/all"})
-
-    public ResponseEntity<List<DirectorEntity>> getAll(){
-        return ResponseEntity.ok(directorService.findByAll());
+    @RequestMapping(method = RequestMethod.GET, path = "/all")
+    private ResponseEntity getProduct(
+            @RequestParam(value = "page", required = false, defaultValue = "0")String page,
+            @RequestParam(value = "limit", required = false, defaultValue = "5") String limit){
+        return ResponseEntity.ok(directorService.findByAll(PageRequest.of(Integer.valueOf(page), Integer.valueOf(limit), Sort.by("name").descending())));
     }
-
     @RequestMapping(method = RequestMethod.POST, path = {"/create"})
-    public ResponseEntity<?> create(@RequestBody DirectorEntity directorEntity){
+    public ResponseEntity<?> create(@Valid @RequestBody DirectorEntity directorEntity){
         return ResponseEntity.ok(directorService.save(directorEntity));
     }
     @RequestMapping(method = RequestMethod.PUT, path = {"id"})

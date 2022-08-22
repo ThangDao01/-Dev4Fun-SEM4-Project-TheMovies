@@ -21,7 +21,10 @@ public class JwtTokenApplication {
             }
         };
     }
-
+    @Bean
+    public PasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     public static void main(String[] args) {
         SpringApplication.run(JwtTokenApplication.class, args);
     }

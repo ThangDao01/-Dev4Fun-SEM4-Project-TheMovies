@@ -1,7 +1,9 @@
 package com.example.jwttoken.service;
 
+import com.example.jwttoken.dto.UserDto;
 import com.example.jwttoken.entity.UserEntity;
 import com.example.jwttoken.repository.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,18 +11,23 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
+
 public class UserService implements UserDetailsService {
 
 
     @Autowired
     UserRepo userRepo;
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = userRepo.findByUsername(username);
@@ -34,7 +41,6 @@ public class UserService implements UserDetailsService {
         User user1 = new User(user.getUsername(), user.getPassword(), simpleGrantedAuthorities);
          return user1;
     }
-
     @PreAuthorize("hasAuthority('admin')")
     public String deleteUser(){
         return "success";

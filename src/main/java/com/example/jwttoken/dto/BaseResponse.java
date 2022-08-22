@@ -1,13 +1,46 @@
 package com.example.jwttoken.dto;
 
+import com.example.jwttoken.entity.CategoryEntity;
+import org.springframework.http.HttpStatus;
+
+import java.util.List;
+
 public class BaseResponse <T>{
-    public int status = 1;
-    public String message = "success";
-    public T data;
+    private HttpStatus status;
+    private String msg;
+    private T data;
 
-    public BaseResponse(){}
 
-    public BaseResponse(T data) {
+    public BaseResponse() {
+    }
+
+    public BaseResponse(HttpStatus status, String msg, T data) {
+        this.status = status;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(HttpStatus status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
         this.data = data;
     }
 }

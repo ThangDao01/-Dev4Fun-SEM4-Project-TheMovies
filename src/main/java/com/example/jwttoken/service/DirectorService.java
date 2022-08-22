@@ -1,8 +1,12 @@
 package com.example.jwttoken.service;
 
+import com.example.jwttoken.dto.BaseResponse;
+import com.example.jwttoken.entity.CategoryEntity;
 import com.example.jwttoken.entity.DirectorEntity;
 import com.example.jwttoken.repository.DirectorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +17,9 @@ public class DirectorService {
     @Autowired
     DirectorRepo directorRepo;
 
-    public List<DirectorEntity> findByAll(){
-        return directorRepo.findAll();
+    public BaseResponse<List<DirectorEntity>> findByAll(Pageable pageable){
+        return new BaseResponse(HttpStatus.OK, "success", directorRepo.findAll(pageable).getContent());
     }
-
     public DirectorEntity save(DirectorEntity director){
         return directorRepo.save(director);
     }

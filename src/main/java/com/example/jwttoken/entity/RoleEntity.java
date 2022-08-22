@@ -1,10 +1,7 @@
 package com.example.jwttoken.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "roles", schema = "security", catalog = "")
 public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

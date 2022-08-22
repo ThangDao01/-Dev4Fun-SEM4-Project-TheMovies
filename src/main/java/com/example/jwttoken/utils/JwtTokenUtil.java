@@ -1,8 +1,6 @@
 package com.example.jwttoken.utils;
 
 import io.jsonwebtoken.*;
-import javafx.animation.KeyFrame;
-import lombok.Data;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
